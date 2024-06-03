@@ -59,26 +59,26 @@ public class BugTests
     }
 
     [TestMethod]
-    public void Bug_Close_From_Closed_State_Should_Remain_Closed()
+    [ExpectedException(typeof(InvalidOperationException))]
+    public void Bug_Close_From_Closed_State_Should_Throw_Exception()
     {
         var bug = new Bug(Bug.State.Closed);
         bug.Close();
-        Assert.AreEqual(Bug.State.Closed, bug.getState());
     }
 
     [TestMethod]
-    public void Bug_Defer_From_Defered_State_Should_Remain_Defered()
+    [ExpectedException(typeof(InvalidOperationException))]
+    public void Bug_Defer_From_Defered_State_Should_Throw_Exception()
     {
         var bug = new Bug(Bug.State.Defered);
         bug.Defer();
-        Assert.AreEqual(Bug.State.Defered, bug.getState());
     }
 
     [TestMethod]
+    [ExpectedException(typeof(InvalidOperationException))]
     public void Bug_Cannot_Defer_From_Open_State()
     {
         var bug = new Bug(Bug.State.Open);
         bug.Defer();
-        Assert.AreEqual(Bug.State.Open, bug.getState());
     }
 }
